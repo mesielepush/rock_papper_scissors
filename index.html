@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align = 'center'>Rock & Paper & Scissors </h1>
+    <br>
+    <div align = "center" >
+        <img src="https://i.imgur.com/4AnPhur.jpg" alt="rock, paper, scissors">
+    </div>
+    
+
+    <h2 align = 'center' id="User"></h2>
+    <div id = 'user_img' align = 'center'></div>
+    <br>
+    <h2 align = 'center' id="Computer"></h2>
+    <div id = 'computer_img' align = 'center'></div>
+    
+    <h2 id = 'result' align = 'center'></h2>
+    <script>
+    
+    let display_selection = {
+        rock    : '<img align = "center" src="https://i.imgur.com/t7nEyRP.jpg" alt="Rock">',
+        paper   : '<img align = "center" src="https://i.imgur.com/PAV1GeH.jpg" alt="Paper">',
+        scissors: '<img align = "center" src="https://i.imgur.com/3EhDh2X.jpg" alt="Scissors">',
+    }
+    gen_computerPlay  = function (list){
+        return list[Math.floor( (Math.random()*list.length) )] }
+
+    let win_values = {
+                        rock    : 'scissors',
+                        paper   : 'rock',
+                        scissors: 'paper'
+                    }
+    const options = Object.keys(win_values);
+    let player_selection;
+
+    while (!options.includes(player_selection)) {
+        player_selection = prompt('Type your play','');}
+
+    let computerPlay  = gen_computerPlay(options);
+
+    player_selection = player_selection.toLowerCase()
+
+    win_effect = function(){
+        document.getElementById('result').innerHTML= "You're good at this: "+ player_selection + ' beats '+ computerPlay
+        console.log("You're good at this: "+ player_selection+ ' beats '+ computerPlay)}
+    lose_effect = function(){
+        document.getElementById('result').innerHTML= 'You suck at this: '+ player_selection+ ' has no chance against '+ computerPlay
+        console.log('You suck at this: '+ player_selection+ ' has no chance against '+ computerPlay)}
+    draw_effect = function(){
+        document.getElementById('result').innerHTML= 'You are boring this: '+ player_selection + ' + ' + computerPlay + ' is a draw'
+        console.log('You are boring this: '+ player_selection+ ' + '+ computerPlay + ' is a draw')}
+
+    playRound = function(player_selection, computerPlay){
+        document.getElementById('User').innerHTML = 'You choose: '+ player_selection
+        document.getElementById('user_img').innerHTML= display_selection[player_selection]
+        document.getElementById('Computer').innerHTML = 'Computer choose: '+ computerPlay
+        document.getElementById('computer_img').innerHTML= display_selection[computerPlay]
+        if (player_selection == computerPlay){draw_effect()}
+        else{ (win_values[player_selection] == computerPlay)? win_effect() : lose_effect();}}
+        
+    
+    playRound(player_selection, computerPlay)
+
+    
+
+
+
+    </script>
+
+</body>
+</html>
+
